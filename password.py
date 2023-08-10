@@ -1,18 +1,41 @@
-import random
-letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
-nr_letters = int(input("enter how many letter you want to enter:"))
-nr_numbers = int(input("enter how many number you want to enter:"))
-nr_symbols = int(input("enter how many symbol you want to enter:"))
+import random # made by https://github.com/Artinnavidgoli
+import string
 
-password= ""
+characters = string.ascii_letters + string.digits + string.punctuation # made by https://github.com/Artinnavidgoli
 
-for char in range(1, nr_letters + 1):
-    password= password + random.choice(letters).lower()
-for char in range(1, nr_numbers + 1):
-    password= password + random.choice(numbers)
-for char in range(1, nr_symbols + 1):
-    password= password + random.choice(symbols).lower()
+menu_options = {
+    1: 'run the password generator',
+    2: 'Exit',
+}
 
-print(password)
+def print_between():
+    print("------------------------------") # made by https://github.com/Artinnavidgoli
+
+
+def print_menu():
+    for key in menu_options.keys():
+        print (key, '--', menu_options[key] ) # made by https://github.com/Artinnavidgoli
+        print_between()
+
+def random_pass():
+    password = ''.join(random.choice(characters) for i in range(int(input("Enter Enter the number of characters:")))) # made by https://github.com/Artinnavidgoli
+
+    print("Random password is:", password)
+    print_between()
+
+if __name__=='__main__':
+    while(True):
+        print_menu()
+        option = ''
+        try:
+            option = int(input('Enter your choice: '))
+        except:
+            print('Wrong input. Please enter a number ...') # made by https://github.com/Artinnavidgoli
+        #Check what choice was entered and act accordingly
+        if option == 1:
+            random_pass()
+        elif option == 2:
+            print('Thanks for using the password generator ')
+            exit()
+        else:
+            print('Invalid option. Please enter a number between 1 and 2.') # made by https://github.com/Artinnavidgoli
